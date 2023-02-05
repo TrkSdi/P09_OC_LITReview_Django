@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+
+{% block title %}<title>Posts</title>{% endblock %}
+
+
+{% block content %}
+<section>
+    <h1>Vos posts</h1>
+    <article id="article-review">
+        <div class="article-description">
+            <h3>Vous avez publié une critique</h3>
+            <h3>Date</h3>
+            <h4>Contenu & Notation</h4>
+            <p>Remarques</p>
+            <div class="article-ticket">
+                Le produit soumis à la critique
+            </div>
+            <button>Modifier</button>
+            <button>Supprimer</button>
+        </div>
+    <article id="ticket-review">
+        <div class="ticket-description">
+            <h3>Vous avez publié une critique</h3>
+            <h3>Date</h3>
+            <h4>Contenu & Notation</h4>
+            <p>Remarques</p>
+            <div class="article-ticket">
+                Le produit soumis à la critique
+            </div>
+            <button>Modifier</button>
+            <button>Supprimer</button>
+        </div>
+    </article>
+</section>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+
+{% block title %}<title>Modifier critique</title>{% endblock %}
+
+
+{% block content %}
+<section>
+    <div>
+        <h1>Modifier votre critique</h1>
+        <article id="ticket-review">
+            <h2>Vous êtes en train de poster en réponse à</h2>
+                <div id="ticket-item">
+                    <p>Livre à critiquer</p>
+                </div>
+        </article>
+        <article id="review">
+            <h2>Critique</h2>
+                <h3>Titre</h3>
+                    <form action="">title</form>
+                <h3>Note</h3>
+                    <ul>
+                        <li>0</li>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                    </ul>
+                <h3>Commentaire</h3>
+                    <form action=""></form>
+            <button>Envoyer</button>
+        </article>
+    </div>
+</section>
+{% endblock %}

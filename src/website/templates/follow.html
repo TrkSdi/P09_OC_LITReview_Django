@@ -1,0 +1,39 @@
+{% extends 'base.html'%}
+
+{% block title %}<title>Onglet d'abonnements</title>{% endblock %}
+
+
+{% block content %}
+<section>
+    <div id="search-follower">
+        <h2>Suivre d'autres utilisateurs</h2>
+        <form action="">Nom d'utilisateur</form>
+        <button>Envoyer</button>
+    </div>
+
+    <div id="following">
+        <h2>Abonnements</h2>
+        <table>
+            <ul>
+                <li>User1</li>
+                <button>Désabonner</button>
+                <li>User2</li>
+                <button>Désabonner</button>
+                <li>User3</li>
+                <button>Désabonner</button>
+            </ul>
+        </table>
+    </div>
+
+    <div id="followers">
+        <table>
+            <ul>
+                <li>User1</li>
+                <li>User2</li>
+            </ul>
+        </table>
+    </div>
+
+    
+</section>
+{% endblock %}

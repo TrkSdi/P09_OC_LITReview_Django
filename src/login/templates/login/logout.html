@@ -1,0 +1,14 @@
+{% extends 'login/base.html'%}
+
+{% block title %}<title>Page d'acceuil</title>{% endblock %}
+
+
+{% block content %}
+<section>
+    <div>
+        <h2>Vous êtes bien déconnecté(e)</h2>
+        <h5><a href="{% url 'login' %}">Se connecter ?</a></h5>
+    </div>
+
+</section>
+{% endblock %}
