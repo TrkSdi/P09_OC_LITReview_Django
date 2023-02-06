@@ -19,7 +19,6 @@ from django.conf.urls.static import static
 from django.urls import include, path
 from login.views import signup
 from django.contrib.auth import views as auth_views
-
 from website.views import *
 
 
@@ -30,11 +29,13 @@ urlpatterns = [
     path('logout/', auth_views.LoginView.as_view(template_name="login/logout.html"), name="logout"),
     path('signup/', signup, name='signup'),
     path('feed/', feed, name='feed'),
-    path('followers/', followers),
+    path('followers/', followers, name="followers"),
     path('ticket/', ticket),
     path('review/', review),
     path('ticket-review/', ticket_review),
-    path('posts/', posts),
+    path('posts/', posts, name='posts'),
     path('edit-review/', edit_review),
     path('edit-ticket/', edit_ticket),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

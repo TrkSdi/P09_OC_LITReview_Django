@@ -1,6 +1,8 @@
+from django.conf import settings
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -8,7 +10,6 @@ class CustomUserManager(BaseUserManager):
     def create_user(self, username, password=None):
         if not username:
             raise ValueError("Nom d'utilisateur obligatoire")
-        
         user = self.model(username=username,)
         user.set_password(password)
         user.save(using=self.db)
@@ -32,6 +33,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         unique=True,
         blank=False
     )
+    #user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
@@ -46,3 +48,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     
     
     USERNAME_FIELD = "username"
+    
+
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
+    follows = models.ManyToManyField("self",
+                                     related_name="followed_by",
+                                     symmetrical=False,
+                                     blank=True)

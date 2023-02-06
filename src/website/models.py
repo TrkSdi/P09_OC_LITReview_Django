@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 NOTE= (
     ("0", "0"),
@@ -14,14 +15,21 @@ class Review(models.Model):
     comment = models.CharField(max_length=500)
     
 class BookToReview(models.Model):
-    title = models.CharField(max_length=100)
+    book_title = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
     image = models.ImageField(upload_to="images/", blank=True, null=True)
+    review_title = models.CharField(max_length=100)
+    note = models.CharField(max_length=5, choices=NOTE, blank=False, default=None)
+    comment = models.CharField(max_length=500)
+
+class TicketToReview(models.Model):
+    title = models.CharField(max_length=100)
+    note = models.CharField(max_length=5, choices=NOTE, blank=False, default=None)
+    comment = models.CharField(max_length=500)
     
 class TicketCreation(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
-    image = models.ImageField(upload_to="ticket/covers", blank=True, null=True)
-    
+    image = models.ImageField(upload_to="images/", blank=True, null=True)
     
 
