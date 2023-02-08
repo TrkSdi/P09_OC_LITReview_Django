@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
+from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -33,7 +34,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         unique=True,
         blank=False
     )
-    #user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
+    follows = models.ManyToManyField("self",
+                                     related_name="followed_by",
+                                     symmetrical=False,
+                                     blank=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
@@ -46,13 +50,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def has_module_perms(self, app_label):
         return self.is_admin
     
+    def __str__(self):
+        return f"{self.username}"
+        
+    
     
     USERNAME_FIELD = "username"
     
-
-class Profile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
-    follows = models.ManyToManyField("self",
-                                     related_name="followed_by",
-                                     symmetrical=False,
-                                     blank=True)

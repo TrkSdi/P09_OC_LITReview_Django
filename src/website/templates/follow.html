@@ -6,23 +6,16 @@
 {% block content %}
 <section>
     <div id="search-follower">
-        <h2>Suivre d'autres utilisateurs</h2>
-        <form action="">Nom d'utilisateur</form>
-        <button>Envoyer</button>
+        <form method="GET">
+            <input type="search" name="search" placeholder="Nom d'utilisateur">
+            <button type="submit">Envoyer</button>
+        </form>
     </div>
 
     <div id="following">
         <h2>Abonnements</h2>
-        <table>
-            <ul>
-                <li>User1</li>
-                <button>Désabonner</button>
-                <li>User2</li>
-                <button>Désabonner</button>
-                <li>User3</li>
-                <button>Désabonner</button>
-            </ul>
-        </table>
+        {% csrf_token %}
+        {{ follower }}
     </div>
 
     <div id="followers">

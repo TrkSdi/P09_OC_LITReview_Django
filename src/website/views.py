@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib import messages
 from .forms import ReviewForm, TicketForm, BookToReview, TicketToReview
+from login.models import CustomUser
 
 
 def feed(request):
@@ -8,9 +9,6 @@ def feed(request):
 
 def posts(request):
     return render(request, "posts.html")
-
-def followers(request):
-    return render(request, "follow.html")
 
 def review(request):
     if request.method == 'POST':
@@ -53,3 +51,13 @@ def ticket_review(request):
 
 def edit_ticket(request):
     return render(request, "edit-ticket.html")
+
+def follow(request):
+    if request.method == "GET":
+        if "search" in request.GET:
+            search = request.GET["search"]
+            follower = CustomUser.objects.filter(username=search)
+        else:
+            messages.error(request, 'Utilisateur inexistant')
+            
+    return render(request, "follow.html", {"follower": follower} )

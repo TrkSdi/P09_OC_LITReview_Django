@@ -29,7 +29,7 @@ urlpatterns = [
     path('logout/', auth_views.LoginView.as_view(template_name="login/logout.html"), name="logout"),
     path('signup/', signup, name='signup'),
     path('feed/', feed, name='feed'),
-    path('followers/', followers, name="followers"),
+    path('follow-page/', follow, name="follow-page"),
     path('ticket/', ticket),
     path('review/', review),
     path('ticket-review/', ticket_review),
