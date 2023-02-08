@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import include, path
-from login.views import signup
+from login.views import signup, logout_user
 from django.contrib.auth import views as auth_views
 from website.views import *
 
@@ -25,8 +25,9 @@ from website.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', auth_views.LoginView.as_view(template_name="login/signin.html"), name="login"),
-    path('logout/', auth_views.LoginView.as_view(template_name="login/logout.html"), name="logout"),
+    path('login/', auth_views.LoginView.as_view(template_name="login/signin.html",
+                                                 redirect_authenticated_user=True), name="login"),
+    path('logout/', logout_user, name="logout"),
     path('signup/', signup, name='signup'),
     path('feed/', feed, name='feed'),
     path('follow-page/', follow, name="follow-page"),

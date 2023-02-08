@@ -15,7 +15,7 @@
     <div id="following">
         <h2>Abonnements</h2>
         {% csrf_token %}
-        {{ follower }}
+        {{ follower.username }}
     </div>
 
     <div id="followers">

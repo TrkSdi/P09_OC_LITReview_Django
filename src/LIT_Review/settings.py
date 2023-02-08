@@ -131,4 +131,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = "login.CustomUser"
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = "feed"

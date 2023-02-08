@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .forms import ReviewForm, TicketForm, BookToReview, TicketToReview
 from login.models import CustomUser
 
-
+@login_required
 def feed(request):
     return render(request, "flux.html")
 
@@ -60,4 +61,4 @@ def follow(request):
         else:
             messages.error(request, 'Utilisateur inexistant')
             
-    return render(request, "follow.html", {"follower": follower} )
+    return render(request, "follow.html", {"follower": follower})
