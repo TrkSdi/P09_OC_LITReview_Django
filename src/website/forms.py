@@ -5,17 +5,25 @@ from .models import Review, Ticket, BookToReview, TicketToReview
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ["ticket", 
-                  "headline", 
+        fields = ["headline", 
                   "rating", 
-                  "body", 
-                  "review_headline", 
-                  "image"]
-        labels = {"ticket": "Titre", 
-                  "comment": "Commentaire",
-                  "note": "Note"}
-        widgets = {"note": forms.RadioSelect(),
+                  "body"]
+        labels = {"headline": "Titre", 
+                  "body": "Commentaire",
+                  "rating": "Note"}
+        widgets = {"rating": forms.RadioSelect(),
                    "comment": forms.Textarea()}
+        
+class TicketForm(forms.ModelForm):
+    class Meta:
+        model = Ticket
+        fields = ["title", "description", "image"]
+        labels = {"title": "Titre", 
+                  "description": "Description",
+                  "image": "Image"}
+        widgets = {"description": forms.Textarea()}      
+        
+        
         
 class BookToReview(forms.ModelForm):
     class Meta:
@@ -41,12 +49,5 @@ class TicketToReview(forms.ModelForm):
         widgets = {"note": forms.RadioSelect(),
                    "comment": forms.Textarea()}
 
-class TicketForm(forms.ModelForm):
-    class Meta:
-        model = Ticket
-        fields = ["title", "description", "image"]
-        labels = {"title": "Titre", 
-                  "description": "Description",
-                  "image": "Image"}
-        widgets = {"description": forms.Textarea()}
+
         
