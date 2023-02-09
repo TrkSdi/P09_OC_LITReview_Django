@@ -31,6 +31,7 @@ urlpatterns = [
     path('signup/', signup, name='signup'),
     path('feed/', feed, name='feed'),
     path('follow-page/', follow, name="follow-page"),
+    path('follow-page/unfollow', unfollow, name="follow-page-unfollow"),
     path('ticket/', ticket),
     path('review/', review),
     path('ticket-review/', ticket_review),

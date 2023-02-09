@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 NOTE= (
     ("0", "0"),
@@ -22,12 +23,12 @@ class Review(models.Model):
     ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE)
     headline = models.CharField(max_length=128)
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    rating = models.CharField(max_length=5, choices=NOTE, blank=False, default=None)
+    rating = models.PositiveSmallIntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
     body = models.TextField(max_length=8192, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
     review_headline = models.CharField(max_length=128)
     image = models.ImageField(upload_to="images/", blank=True, null=True)
-
+    # image à enlever
     
     
 class BookToReview(models.Model):

@@ -5,8 +5,13 @@ from .models import Review, Ticket, BookToReview, TicketToReview
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = "__all__"
-        labels = {"title": "Titre", 
+        fields = ["ticket", 
+                  "headline", 
+                  "rating", 
+                  "body", 
+                  "review_headline", 
+                  "image"]
+        labels = {"ticket": "Titre", 
                   "comment": "Commentaire",
                   "note": "Note"}
         widgets = {"note": forms.RadioSelect(),
@@ -41,7 +46,7 @@ class TicketForm(forms.ModelForm):
         model = Ticket
         fields = ["title", "description", "image"]
         labels = {"title": "Titre", 
-                  "description": "Description"}
+                  "description": "Description",
+                  "image": "Image"}
         widgets = {"description": forms.Textarea()}
-        
         

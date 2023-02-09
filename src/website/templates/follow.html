@@ -6,7 +6,8 @@
 {% block content %}
 <section>
     <div id="search-follower">
-        <form method="GET">
+        <form method="POST" action="{% url 'follow-page' %}">
+            {% csrf_token %}
             <input type="search" name="search" placeholder="Nom d'utilisateur">
             <button type="submit">Envoyer</button>
         </form>
@@ -14,15 +15,24 @@
 
     <div id="following">
         <h2>Abonnements</h2>
-        {% csrf_token %}
-        {{ follower.username }}
+        {% for follow in follows %}
+            {{ follow.username }}
+            <form method="POST" action="{% url 'follow-page-unfollow'%}">
+                {% csrf_token %}
+                <input hidden type="text" value="{{ follow.id }}" name="followed_id">
+                <button type="submit" name="Unfollow">Se désabonner</button>
+            </form>
+            
+        {% endfor %}
     </div>
 
     <div id="followers">
+        <h1>Abonnés</h1>
         <table>
             <ul>
-                <li>User1</li>
-                <li>User2</li>
+                {% for follow in followed_by %}
+                    {{ follow.username }}
+                {% endfor %}
             </ul>
         </table>
     </div>

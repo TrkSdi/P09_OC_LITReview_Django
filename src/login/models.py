@@ -34,8 +34,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         unique=True,
         blank=False
     )
-    following = models.ManyToManyField("self",
-                                     related_name="follows",
+    follows = models.ManyToManyField("self",
+                                     related_name="followed_by",
                                      symmetrical=False,
                                      blank=True)
     is_active = models.BooleanField(default=True)
