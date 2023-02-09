@@ -18,6 +18,9 @@ class Ticket(models.Model):
     image = models.ImageField(upload_to="images/", blank=True, null=True)
     time_created = models.DateTimeField(auto_now_add=True)
     
+    def __str__(self):
+        return f"{self.title}"
+    
 class Review(models.Model):
     ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE)
     headline = models.CharField(max_length=128)
@@ -25,6 +28,9 @@ class Review(models.Model):
     rating = models.CharField(max_length=5, choices=NOTE, blank=False, default=None)
     body = models.TextField(max_length=8192, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.headline}"
     
     
 class BookToReview(models.Model):

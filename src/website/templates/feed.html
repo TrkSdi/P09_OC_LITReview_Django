@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+
+{% block title %}<title>Flux</title>{% endblock %}
+
+
+{% block content %}
+<section>
+    <button><a href="{% url 'ticket' %}">Demander une critique</a></button>
+    <button><a href="{% url 'review' %}">Créer une critique</a></button>
+    <form method="GET">
+        {{ reviews_and_tickets }}
+    </form>
+</section>
+{% endblock %}

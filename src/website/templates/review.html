@@ -5,17 +5,6 @@
 {% block content %}
 <section>
     <div>
-        <!--<h1>Créer une critique</h1>
-            <article id="book-article">
-                <h2>Livre / Article</h2>
-                    <h3>Titre</h3>
-                        <form action="">title</form>
-                    <h3>Description</h3>
-                        <form action="">description</form>
-                    <h3>Image</h3>
-                        <button>Télécharger fichier</button>
-            </article>-->
-
             <article id="review">
                 <form method="POST" enctype='multipart/form-data'>
                     {% csrf_token %}

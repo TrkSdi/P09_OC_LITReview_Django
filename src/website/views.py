@@ -1,16 +1,25 @@
 from itertools import chain
-from django import forms
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import ReviewForm, TicketForm, BookToReview, TicketToReview
 from login.models import CustomUser
-from django.db.models import CharField, Value
+from .models import Review, Ticket
+from django.db.models import CharField, Value, Q
 
 @login_required
 def feed(request):
+    reviews = Review.objects.filter(
+        Q(user__in=request.user.follows.all())
+    )
+    tickets = Ticket.objects.filter(
+        Q(user__in=request.user.follows.all())
+    )
     
-    return render(request, 'flux.html', context={'posts': posts})
+    reviews_and_tickets = sorted(chain(reviews, tickets), key=lambda x: x.time_created, reverse=True)
+    context = {"reviews_and_tickets":reviews_and_tickets}
+    
+    return render(request, 'feed.html', context)
     
 @login_required
 def posts(request):
