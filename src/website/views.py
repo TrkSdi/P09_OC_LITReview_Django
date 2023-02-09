@@ -12,11 +12,13 @@ def feed(request):
     reviews = Review.objects.filter(
         Q(user__in=request.user.follows.all())
     )
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     tickets = Ticket.objects.filter(
         Q(user__in=request.user.follows.all())
     )
-    
+    tickets = tickets.annotate(content_type=Value('REVIEW', CharField()))
     reviews_and_tickets = sorted(chain(reviews, tickets), key=lambda x: x.time_created, reverse=True)
+    
     context = {"reviews_and_tickets":reviews_and_tickets}
     
     return render(request, 'feed.html', context)

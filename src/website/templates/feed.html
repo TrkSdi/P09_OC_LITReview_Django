@@ -8,7 +8,14 @@
     <button><a href="{% url 'ticket' %}">Demander une critique</a></button>
     <button><a href="{% url 'review' %}">Créer une critique</a></button>
     <form method="GET">
-        {{ reviews_and_tickets }}
+        
+        {% for post in reviews_and_tickets %}
+            {% if post.content_type == 'TICKET' %} 
+                {{ post }}
+            {% elif post.content_type == 'REVIEW' %}
+                {{ post }}
+            {% endif %}
+        {% endfor %}
     </form>
 </section>
 {% endblock %}
