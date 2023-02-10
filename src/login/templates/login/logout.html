@@ -7,6 +7,7 @@
 <section>
     <div>
         <h2>Vous êtes bien déconnecté(e)</h2>
+        {% csrf_token %}
         <h5><a href="{% url 'login' %}">Se connecter ?</a></h5>
     </div>
 

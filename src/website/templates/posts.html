@@ -6,7 +6,18 @@
 {% block content %}
 <section>
     <h1>Vos posts</h1>
-    <article id="article-review">
+    <form action="" method="GET">
+    {% csrf_token %}
+    {% for post in reviews_and_tickets %}
+        {% if post.content_type == 'TICKET' %}
+            {{ post }}
+        {% elif post.content_type == 'REVIEW' %}
+            {{ post }} 
+        {% endif %}
+    {% endfor %}
+    </form>
+
+    <!--<article id="article-review">
         <div class="article-description">
             <h3>Vous avez publié une critique</h3>
             <h3>Date</h3>
@@ -30,6 +41,6 @@
             <button>Modifier</button>
             <button>Supprimer</button>
         </div>
-    </article>
+    </article>-->
 </section>
 {% endblock %}

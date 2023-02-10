@@ -7,25 +7,13 @@ from login.models import CustomUser
 from .models import Review, Ticket
 from django.db.models import CharField, Value, Q
 
-@login_required
-def feed(request):
-    reviews = Review.objects.filter(
-        Q(user__in=request.user.follows.all())
-    )
-    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
-    tickets = Ticket.objects.filter(
-        Q(user__in=request.user.follows.all())
-    )
-    tickets = tickets.annotate(content_type=Value('REVIEW', CharField()))
-    reviews_and_tickets = sorted(chain(reviews, tickets), key=lambda x: x.time_created, reverse=True)
+
     
-    context = {"reviews_and_tickets":reviews_and_tickets}
+
     
-    return render(request, 'feed.html', context)
     
-@login_required
-def posts(request):
-    return render(request, "posts.html")
+
+
 
 @login_required
 def edit_review(request):
@@ -56,12 +44,16 @@ def follow(request):
     user = CustomUser.objects.get(pk=request.user.id)
     if request.method == "POST":
         search = request.POST["search"]
-        followed = CustomUser.objects.get(username=search)
-        if followed is not None:  
-            user.follows.add(followed)
-            user.save()
-    else:
-        messages.error(request, 'Utilisateur inexistant')
+        try:
+            followed = CustomUser.objects.get(username=search)
+            if followed is not None:  
+                user.follows.add(followed)
+                user.save()
+        except:
+            messages.error(request, f'{search} n\'existe pas')
+            return redirect('follow-page')
+        
+        
             
     context = {"follows":user.follows.all(), "followed_by": user.followed_by.all()}
     
@@ -124,3 +116,31 @@ def review(request):
                "ticket_form":ticket_form}
            
     return render(request, "review.html", context)
+
+@login_required
+def feed(request):
+    reviews = Review.objects.filter(
+        Q(user__in=request.user.follows.all())
+    )
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+    tickets = Ticket.objects.filter(
+        Q(user__in=request.user.follows.all())
+    )
+    tickets = tickets.annotate(content_type=Value('REVIEW', CharField()))
+    reviews_and_tickets = sorted(chain(reviews, tickets), key=lambda x: x.time_created, reverse=True)
+    
+    context = {"reviews_and_tickets":reviews_and_tickets}
+    
+    return render(request, 'feed.html', context)
+
+@login_required
+def posts(request):
+    reviews = Review.objects.filter(user=request.user)
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+    tickets = Ticket.objects.filter(user=request.user)
+    tickets = tickets.annotate(content_type=Value('REVIEW', CharField()))
+    reviews_and_tickets = sorted(chain(reviews, tickets), key=lambda x: x.time_created, reverse=True)
+    
+    context = {"reviews_and_tickets":reviews_and_tickets}
+    
+    return render(request, 'posts.html', context)

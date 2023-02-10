@@ -7,15 +7,18 @@
 <section>
     <button><a href="{% url 'ticket' %}">Demander une critique</a></button>
     <button><a href="{% url 'review' %}">Créer une critique</a></button>
-    <form method="GET">
-        
+    <form method="POST">
+        {% csrf_token %}
         {% for post in reviews_and_tickets %}
-            {% if post.content_type == 'TICKET' %} 
-                {{ post }}
-            {% elif post.content_type == 'REVIEW' %}
+            {% if post.content_type == 'TICKET' %}
+                    {{ post }}
+            {% endif %}
+                <button type="submit" name="review">Créer une critique</button>
+            {% if post.content_type == 'REVIEW' %}
                 {{ post }}
             {% endif %}
         {% endfor %}
+        
     </form>
 </section>
 {% endblock %}

@@ -22,8 +22,8 @@
                 <input hidden type="text" value="{{ follow.id }}" name="followed_id">
                 <button type="submit" name="Unfollow">Se désabonner</button>
             </form>
-            
         {% endfor %}
+        {% include 'message.html' %}
     </div>
 
     <div id="followers">
@@ -39,4 +39,12 @@
 
     
 </section>
+<script>
+    setTimeout(function() {
+        if ($('#msg').length>0) {
+            $('#msg').remove();
+        }
+    }, 3000)
+</script>
+
 {% endblock %}
