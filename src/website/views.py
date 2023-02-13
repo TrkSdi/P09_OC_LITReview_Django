@@ -31,9 +31,7 @@ def ticket_review(request):
             
     return render(request, "ticket-review.html", {"review_form": review_form})
 
-@login_required
-def edit_ticket(request):
-    return render(request, "edit-ticket.html")
+
 
 
 
@@ -53,8 +51,6 @@ def follow(request):
             messages.error(request, f'{search} n\'existe pas')
             return redirect('follow-page')
         
-        
-            
     context = {"follows":user.follows.all(), "followed_by": user.followed_by.all()}
     
     return render(request, "follow.html", context)
@@ -126,7 +122,7 @@ def feed(request):
     tickets = Ticket.objects.filter(
         Q(user__in=request.user.follows.all())
     )
-    tickets = tickets.annotate(content_type=Value('REVIEW', CharField()))
+    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
     reviews_and_tickets = sorted(chain(reviews, tickets), key=lambda x: x.time_created, reverse=True)
     
     context = {"reviews_and_tickets":reviews_and_tickets}
@@ -138,9 +134,16 @@ def posts(request):
     reviews = Review.objects.filter(user=request.user)
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     tickets = Ticket.objects.filter(user=request.user)
-    tickets = tickets.annotate(content_type=Value('REVIEW', CharField()))
+    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
     reviews_and_tickets = sorted(chain(reviews, tickets), key=lambda x: x.time_created, reverse=True)
     
     context = {"reviews_and_tickets":reviews_and_tickets}
     
     return render(request, 'posts.html', context)
+
+@login_required
+def edit_ticket(request):
+    ticket = Ticket.objects.filter(user=request.user)
+    form = TicketForm(instance=ticket)
+    
+    return render(request, "edit-ticket.html", {'form':form})

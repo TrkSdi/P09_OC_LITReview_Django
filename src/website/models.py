@@ -15,12 +15,19 @@ class Ticket(models.Model):
     title = models.CharField(max_length=128)
     description = models.TextField(max_length=2048, blank=True)
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="images/", blank=True, null=True)
+    image = models.ImageField(upload_to="media/images/", blank=True, null=True)
     time_created = models.DateTimeField(auto_now_add=True)
     reviewed = models.BooleanField(default=False)
     
-    def __str__(self):
-        return f"{self.title}"
+    @property
+    def image_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
+        
+
+    
+    #def __str__(self):
+    #    return f"{self.title}"
     
 class Review(models.Model):
     ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE)
@@ -30,8 +37,15 @@ class Review(models.Model):
     body = models.TextField(max_length=8192, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
     
-    def __str__(self):
-        return f"{self.headline}"
+    @property
+    def star_rating(self):
+        image = 'media/images/—Pngtree—star vector icon_4015244.png'
+        if self.rating == '5':
+            return "* * * * *"
+    
+    
+    #def __str__(self):
+    #    return f"{self.headline}"
     
     
 class BookToReview(models.Model):

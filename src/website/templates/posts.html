@@ -9,38 +9,24 @@
     <form action="" method="GET">
     {% csrf_token %}
     {% for post in reviews_and_tickets %}
-        {% if post.content_type == 'TICKET' %}
-            {{ post }}
-        {% elif post.content_type == 'REVIEW' %}
-            {{ post }} 
-        {% endif %}
-    {% endfor %}
+            {% if post.content_type == 'TICKET' %}
+                    <p>{{ post.user }} a demandé une critique</p>
+                    <p>{{ post.title }}</p>
+                    <p>{{ post.time_created }}</p>
+                    {% if post.image %}
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" width=100>
+                    {% endif %}
+                        <button href="{% url 'ticket-edit' %}" type="submit" name="review-ticket">Modifier Ticket</button>
+                <p>------------------------------------</p>
+            {% endif %}
+            {% if post.content_type == 'REVIEW' %}
+            <p>{{ post.user }} a publié une critique</p>
+            <p>{{ post.headline }}</p>
+            <p>{{ post.time_created }}</p>
+            <p>{{ post.star_rating }}</p>
+            <p>------------------------------------</p>
+            {% endif %}
+        {% endfor %}
     </form>
-
-    <!--<article id="article-review">
-        <div class="article-description">
-            <h3>Vous avez publié une critique</h3>
-            <h3>Date</h3>
-            <h4>Contenu & Notation</h4>
-            <p>Remarques</p>
-            <div class="article-ticket">
-                Le produit soumis à la critique
-            </div>
-            <button>Modifier</button>
-            <button>Supprimer</button>
-        </div>
-    <article id="ticket-review">
-        <div class="ticket-description">
-            <h3>Vous avez publié une critique</h3>
-            <h3>Date</h3>
-            <h4>Contenu & Notation</h4>
-            <p>Remarques</p>
-            <div class="article-ticket">
-                Le produit soumis à la critique
-            </div>
-            <button>Modifier</button>
-            <button>Supprimer</button>
-        </div>
-    </article>-->
 </section>
 {% endblock %}

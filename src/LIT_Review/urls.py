@@ -33,11 +33,9 @@ urlpatterns = [
     path('follow-page/', follow, name="follow-page"),
     path('follow-page/unfollow', unfollow, name="follow-page-unfollow"),
     path('ticket/', ticket, name='ticket'),
+    path('ticket/edit/', edit_ticket, name='ticket-edit'),
     path('review/', review, name="review"),
-    path('ticket-review/', ticket_review),
     path('posts/', posts, name='posts'),
-    path('edit-review/', edit_review),
-    path('edit-ticket/', edit_ticket),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

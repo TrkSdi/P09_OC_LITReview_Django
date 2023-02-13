@@ -1,5 +1,4 @@
 {% extends 'base.html'%}
-
 {% block title %}<title>Flux</title>{% endblock %}
 
 
@@ -11,11 +10,21 @@
         {% csrf_token %}
         {% for post in reviews_and_tickets %}
             {% if post.content_type == 'TICKET' %}
-                    {{ post }}
+                    <p>{{ post.user }} a demandé une critique</p>
+                    <p>{{ post.title }}</p>
+                    <p>{{ post.time_created }}</p>
+                    {% if post.image %}
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" width=100>
+                    {% endif %}
+                <button type="submit" name="review-ticket">Créer une critique</button>
+                <p>------------------------------------</p>
             {% endif %}
-                <button type="submit" name="review">Créer une critique</button>
             {% if post.content_type == 'REVIEW' %}
-                {{ post }}
+            <p>{{ post.user }} a publié une critique</p>
+            <p>{{ post.headline }}</p>
+            <p>{{ post.time_created }}</p>
+            <p>{{ post.star_rating }}</p>
+            <p>------------------------------------</p>
             {% endif %}
         {% endfor %}
         
