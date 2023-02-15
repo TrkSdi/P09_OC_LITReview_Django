@@ -1,8 +1,10 @@
 {% extends 'base.html'%}
+{% load static %}
 {% block title %}<title>Flux</title>{% endblock %}
 
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/feed.css' %}">
 <section>
     <button><a href="{% url 'ticket' %}">Demander une critique</a></button>
     <button><a href="{% url 'review' %}">Créer une critique</a></button>
@@ -10,21 +12,10 @@
         {% csrf_token %}
         {% for post in reviews_and_tickets %}
             {% if post.content_type == 'TICKET' %}
-                    <p>{{ post.user }} a demandé une critique</p>
-                    <p>{{ post.title }}</p>
-                    <p>{{ post.time_created }}</p>
-                    {% if post.image %}
-                        <img src="{{ post.image.url }}" alt="{{ post.title }}" width=100>
-                    {% endif %}
-                <button type="submit" name="review-ticket">Créer une critique</button>
-                <p>------------------------------------</p>
+              {% include 'snippets/ticket-snippets.html' %}      
             {% endif %}
             {% if post.content_type == 'REVIEW' %}
-            <p>{{ post.user }} a publié une critique</p>
-            <p>{{ post.headline }}</p>
-            <p>{{ post.time_created }}</p>
-            <p>{{ post.star_rating }}</p>
-            <p>------------------------------------</p>
+            {% include 'snippets/review-snippets.html' %}
             {% endif %}
         {% endfor %}
         

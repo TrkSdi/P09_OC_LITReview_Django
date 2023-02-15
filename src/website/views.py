@@ -116,11 +116,14 @@ def review(request):
 @login_required
 def feed(request):
     reviews = Review.objects.filter(
-        Q(user__in=request.user.follows.all())
-    )
+        Q(user__in=request.user.follows.all()) |
+        Q(user=request.user) |
+        Q(ticket__user=request.user) 
+    ).distinct()
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     tickets = Ticket.objects.filter(
-        Q(user__in=request.user.follows.all())
+        Q(user__in=request.user.follows.all()) |
+        Q(user=request.user)
     )
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
     reviews_and_tickets = sorted(chain(reviews, tickets), key=lambda x: x.time_created, reverse=True)
@@ -142,8 +145,11 @@ def posts(request):
     return render(request, 'posts.html', context)
 
 @login_required
-def edit_ticket(request):
-    ticket = Ticket.objects.filter(user=request.user)
+def edit_ticket(request, ticket_id):
+    ticket = Ticket.objects.get(pk=ticket_id)
     form = TicketForm(instance=ticket)
+    # if request = POST
     
     return render(request, "edit-ticket.html", {'form':form})
+
+

@@ -6,8 +6,6 @@
 {% block content %}
 <section>
     <h1>Vos posts</h1>
-    <form action="" method="GET">
-    {% csrf_token %}
     {% for post in reviews_and_tickets %}
             {% if post.content_type == 'TICKET' %}
                     <p>{{ post.user }} a demandé une critique</p>
@@ -16,7 +14,7 @@
                     {% if post.image %}
                         <img src="{{ post.image.url }}" alt="{{ post.title }}" width=100>
                     {% endif %}
-                        <button href="{% url 'ticket-edit' %}" type="submit" name="review-ticket">Modifier Ticket</button>
+                        <a href="{% url 'ticket-edit' post.id %}"  name="review-ticket">Modifier Ticket</a>
                 <p>------------------------------------</p>
             {% endif %}
             {% if post.content_type == 'REVIEW' %}
@@ -27,6 +25,5 @@
             <p>------------------------------------</p>
             {% endif %}
         {% endfor %}
-    </form>
 </section>
 {% endblock %}

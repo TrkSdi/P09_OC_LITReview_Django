@@ -17,17 +17,19 @@ class Ticket(models.Model):
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="media/images/", blank=True, null=True)
     time_created = models.DateTimeField(auto_now_add=True)
-    reviewed = models.BooleanField(default=False)
     
     @property
     def image_url(self):
         if self.image and hasattr(self.image, 'url'):
             return self.image.url
-        
-
     
-    #def __str__(self):
-    #    return f"{self.title}"
+    @property    
+    def is_reviewed(self):
+        countreview = Review.objects.filter(ticket=self).count()
+        return bool(countreview)
+    
+    def __str__(self):
+        return f"{self.title}"
     
 class Review(models.Model):
     ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE)
@@ -44,8 +46,8 @@ class Review(models.Model):
             return "* * * * *"
     
     
-    #def __str__(self):
-    #    return f"{self.headline}"
+    def __str__(self):
+        return f"{self.headline}"
     
     
 class BookToReview(models.Model):
