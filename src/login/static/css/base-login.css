@@ -1,0 +1,20 @@
+body {
+    background-color: rgb(236, 233, 233);
+}
+
+header {
+    width: auto;
+    font-family: 'Roboto', sans-serif;
+    color : whitesmoke;
+    border-radius: 3px;
+    background-color: rgb(46, 44, 44);
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    
+}
+    
+header h1 {
+    font-size: 15px;
+    font-weight: 300;
+}

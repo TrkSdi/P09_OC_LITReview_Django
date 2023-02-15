@@ -1,0 +1,57 @@
+h2 {
+    font-weight: 500;
+    font-size: 15px;
+    text-align: center;
+    padding-top: 50px;
+    
+}
+
+section{
+    margin-top: -12px;
+    border: 1px solid rgb(46, 44, 44);
+    padding-bottom: 200px;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.follow, .followers {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.search-btn {
+    margin-left: 10px;
+}
+
+.search-bar {
+    width: 400px;
+}
+
+.name-button {
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 5px;
+    border: 0.5px solid rgb(156, 156, 156);
+    background-color: rgb(235, 235, 235);
+    
+     
+}
+
+.unfollow-btn {
+    font-size: 11px;
+}
+
+.followers-name {
+    border: 0.5px solid rgb(156, 156, 156);
+    font-size: 12px;
+    text-align: center;
+}

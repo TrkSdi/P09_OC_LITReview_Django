@@ -1,46 +1,53 @@
 {% extends 'base.html'%}
+{% load static %}
 
 {% block title %}<title>Onglet d'abonnements</title>{% endblock %}
 
 
 {% block content %}
-<section>
-    <div id="search-follower">
-        <form method="POST" action="{% url 'follow-page' %}">
-            {% csrf_token %}
-            <input type="search" name="search" placeholder="Nom d'utilisateur">
-            <button type="submit">Envoyer</button>
-        </form>
-    </div>
+<link rel="stylesheet" href="{% static 'css/follows.css' %}">
+    <div class="follow-container">  
+        <section>
+            <h2>Suivre d'autres utilisateurs</h2>
+                <div id="search-follower">
+                    <form class="search" method="POST" action="{% url 'follow-page' %}">
+                        {% csrf_token %}
+                        <input class="search-bar" type="search" name="search" placeholder="Nom d'utilisateur">
+                        <button class="search-btn" type="submit">Envoyer</button>
+                    </form>
+                </div>
 
-    <div id="following">
-        <h2>Abonnements</h2>
-        {% for follow in follows %}
-            {{ follow.username }}
-            <form method="POST" action="{% url 'follow-page-unfollow'%}">
-                {% csrf_token %}
-                <input hidden type="text" value="{{ follow.id }}" name="followed_id">
-                <button type="submit" name="Unfollow">Se désabonner</button>
-            </form>
-        {% endfor %}
-        
-        {% for msg in messages %}
-            {{ msg }}
-            {% endfor %}
             
-    </div>
-
-    <div id="followers">
-        <h1>Abonnés</h1>
-        <table>
-            <ul>
-                {% for follow in followed_by %}
-                    {{ follow.username }}
+            <h2>Abonnements</h2>
+                <div id="following" class="follow">
+                {% for follow in follows %}
+                    <div class="name-button">
+                        <div class="followed-name">
+                            {{ follow.username }}
+                        </div>
+                        <form method="POST" action="{% url 'follow-page-unfollow'%}">
+                            {% csrf_token %}
+                            <input hidden type="text" value="{{ follow.id }}" name="followed_id">
+                            <button class="unfollow-btn" type="submit" name="Unfollow">Se désabonner</button>
+                        </form>
+                    </div>
                 {% endfor %}
-            </ul>
-        </table>
-    </div>
+                
+                {% for msg in messages %}
+                    {{ msg }}
+                    {% endfor %}   
+                </div>
+            
+            <h2>Abonnés</h2>
+                <div id="followers" class="followers">
+                    {% for follow in followed_by %}
+                        <div class="followers-name">
+                            {{ follow.username }}
+                        </div>
+                    {% endfor %}
+                </div>
+        </section>
+    </div>   
+        
 
-    
-</section>
 {% endblock %}
