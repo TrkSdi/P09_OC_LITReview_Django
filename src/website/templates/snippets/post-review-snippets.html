@@ -1,0 +1,9 @@
+{% load static %}
+    <div class="review">
+        <div class="head-review">
+        <p>{{ post.user }} a publié une critique</p>
+        <p class="time-created">{{ post.time_created }}</p>
+        </div>
+        <p>{{ post.headline }}</p>
+        <p>{{ post.star_rating }}</p>
+    </div>

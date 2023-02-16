@@ -1,0 +1,14 @@
+<div class="ticket">
+    <div class="head-ticket">
+    <p>{{ post.user }} a demandé une critique</p>
+    <p class="time-created">{{ post.time_created }}</p>
+    </div>
+    <p>{{ post.title }}</p>
+    {% if post.image %}
+        <img class="image-ticket" src="{{ post.image.url }}" alt="{{ post.title }}">
+    {% endif %}
+        <div class="btn">
+            <button class="edit-btn"><a href="{% url 'ticket-edit' post.id %}"  name="review-ticket">Modifier</a></button>
+            <button class="remove-btn"><a href=""  name="review-ticket">Supprimer</a></button>
+        </div>
+</div>

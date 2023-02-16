@@ -1,30 +1,22 @@
 {% extends 'base.html'%}
+
 {% load static %}
-{% block css %}<link rel="stylesheet" href="{% static 'css/post.css' %}">{% endblock %}
+
+{% block css %}{% endblock %}
 {% block title %}<title>Posts</title>{% endblock %}
 
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/post.css' %}">
 <section>
-    <h1>Vos posts</h1>
+    <h2 class="title">Vos posts</h2>
     {% for post in reviews_and_tickets %}
-            {% if post.content_type == 'TICKET' %}
-                    <p>{{ post.user }} a demandé une critique</p>
-                    <p>{{ post.title }}</p>
-                    <p>{{ post.time_created }}</p>
-                    {% if post.image %}
-                        <img src="{{ post.image.url }}" alt="{{ post.title }}" width=100>
-                    {% endif %}
-                        <a href="{% url 'ticket-edit' post.id %}"  name="review-ticket">Modifier Ticket</a>
-                <p>------------------------------------</p>
-            {% endif %}
-            {% if post.content_type == 'REVIEW' %}
-            <p>{{ post.user }} a publié une critique</p>
-            <p>{{ post.headline }}</p>
-            <p>{{ post.time_created }}</p>
-            <p>{{ post.star_rating }}</p>
-            <p>------------------------------------</p>
-            {% endif %}
-        {% endfor %}
+        {% if post.content_type == 'TICKET' %}
+            {% include 'snippets/post-ticket-snippets.html' %}
+        {% endif %}
+        {% if post.content_type == 'REVIEW' %}
+            {% include 'snippets/post-review-snippets.html' %}
+        {% endif %}
+    {% endfor %}
 </section>
 {% endblock %}

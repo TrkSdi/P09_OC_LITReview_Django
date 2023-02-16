@@ -1,0 +1,64 @@
+.container {
+    width:auto;
+    height: 500px;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+}
+
+.section {
+    border: 1px, solid, black;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+
+}
+
+.connexion {
+    
+    background-color: rgb(213, 216, 216);
+    border-radius: 1px;
+    width: 220px;
+    margin-left: 70px;
+    display: flex;
+    justify-content: center;
+    height: 250px;
+}
+
+.inscription {
+    
+    width: 220px;
+    text-align: center;
+}
+
+.form {
+    
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    text-align: center;
+    
+}
+
+.btn-cnx {
+    margin-top: 10px;
+}
+
+h2 {
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.btn-signup a:visited {
+    color: black;
+}
+
+.btn-signup a:link {
+    text-decoration: none;
+}
+
+.btn-signup {
+    margin-top: 20px;
+}
