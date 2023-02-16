@@ -1,0 +1,39 @@
+.subscribe {
+    
+    margin-top: 20px;
+    text-align: center;
+
+}
+
+h2 {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+button, .validation-btn {
+    font-size: 10px;
+    width: 60px;
+    
+}
+
+button a:visited {
+    color: black;
+}
+
+button a:link {
+    text-decoration: none;
+}
+
+.flex-btn {
+    display: flex;
+    justify-content: center;
+
+}
+
+.validation-btn {
+    margin-left: 20px;
+}
+
+p {
+    font-size: 12px;
+}

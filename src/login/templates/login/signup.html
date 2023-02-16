@@ -1,18 +1,25 @@
 {% extends 'login/base.html'%}
-
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/signup.css' %}">{% endblock %}
 {% block title %}<title>Formulaire d'inscription</title>{% endblock %}
 
 
 {% block content %}
 <section>
-    <h2>Inscrivez-vous</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="button">
-            <a href="{% url 'login' %}">Retour</a>
-        </button>
-        <input type="submit" value="S'inscrire">
-    </form>
+    <div class="subscribe">
+        <h2>Inscrivez-vous</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <p>{{ form.username }}</p>
+                <p>{{ form.password1 }}</p>
+                <p>{{ form.password2 }}</p>
+                <div class="flex-btn">
+                    <button type="button">
+                        <a href="{% url 'login' %}">Retour</a>
+                    </button>
+                    <input class="validation-btn" type="submit" value="S'inscrire">
+                </div>
+            </form>
+    </div>
 </section>
 {% endblock %}
