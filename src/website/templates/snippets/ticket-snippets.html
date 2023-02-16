@@ -1,10 +1,16 @@
-<p>{{ post.user }} a demandé une critique</p>
-                    <p>{{ post.title }}</p>
-                    <p>{{ post.time_created }}</p>
-                    {% if post.image %}
-                        <img src="{{ post.image.url }}" alt="{{ post.title }}" width=100>
-                    {% endif %}
-                {% if post.is_reviewed == False %}
-                <button type="submit" name="review-ticket">Créer une critique</button>
-                {% endif %}
-                <p>------------------------------------</p>
+
+<div class="asked-review">
+    <div class="user-review">
+        <p>{{ post.user }} a demandé une critique</p>
+        <p class="time-created">{{ post.time_created }}</p>
+    </div>
+    <p>{{ post.title }}</p>
+    <div class="image-btn">
+        {% if post.image %}
+            <img class="ticket-image" src="{{ post.image.url }}" alt="{{ post.title }}">
+        {% endif %}
+        {% if post.is_reviewed == False %}
+            <button class="ticket-btn-1" type="submit" name="review-ticket">Créer une critique</button>
+        {% endif %}
+    </div>      
+</div>
