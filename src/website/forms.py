@@ -1,5 +1,6 @@
 from django import forms
-from .models import Review, Ticket, BookToReview, TicketToReview
+from .models import Review, Ticket
+
 
 
 class ReviewForm(forms.ModelForm):
@@ -24,7 +25,7 @@ class TicketForm(forms.ModelForm):
         widgets = {"description": forms.Textarea()}      
         
         
-        
+"""
 class BookToReview(forms.ModelForm):
     class Meta:
         model = BookToReview
@@ -49,5 +50,5 @@ class TicketToReview(forms.ModelForm):
         widgets = {"note": forms.RadioSelect(),
                    "comment": forms.Textarea()}
 
-
+"""
         

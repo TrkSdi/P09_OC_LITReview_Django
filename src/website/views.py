@@ -1,8 +1,9 @@
 from itertools import chain
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import ReviewForm, TicketForm, BookToReview, TicketToReview
+from .forms import ReviewForm, TicketForm
 from login.models import CustomUser
 from .models import Review, Ticket
 from django.db.models import CharField, Value, Q
@@ -151,5 +152,3 @@ def edit_ticket(request, ticket_id):
     # if request = POST
     
     return render(request, "edit-ticket.html", {'form':form})
-
-

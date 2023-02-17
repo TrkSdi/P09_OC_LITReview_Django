@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'login',
     'website',
+    'star_ratings',
 ]
 
 MIDDLEWARE = [

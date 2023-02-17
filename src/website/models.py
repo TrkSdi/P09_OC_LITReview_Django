@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 
+
 NOTE= (
     ("0", "0"),
     ("1", "1"),
@@ -39,17 +40,13 @@ class Review(models.Model):
     body = models.TextField(max_length=8192, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
     
-    @property
-    def star_rating(self):
-        image = 'media/images/—Pngtree—star vector icon_4015244.png'
-        if self.rating == '5':
-            return "* * * * *"
-    
     
     def __str__(self):
         return f"{self.headline}"
     
+
     
+""""    
 class BookToReview(models.Model):
     book_title = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
@@ -67,5 +64,5 @@ class TicketCreation(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
     image = models.ImageField(upload_to="images/", blank=True, null=True)
-    
+"""   
 
