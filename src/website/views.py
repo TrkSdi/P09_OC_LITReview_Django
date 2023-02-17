@@ -22,15 +22,7 @@ def edit_review(request):
 
 @login_required
 def ticket_review(request):
-    if request.method == 'POST':
-        review_form  = TicketToReview(request.POST)
-        if review_form.is_valid():
-            review_form.save()
-            review_form.clean()
-    else:
-        review_form = TicketToReview()
-            
-    return render(request, "ticket-review.html", {"review_form": review_form})
+    return render(request, "ticket-review.html")
 
 
 
@@ -147,8 +139,16 @@ def posts(request):
 
 @login_required
 def edit_ticket(request, ticket_id):
-    ticket = Ticket.objects.get(pk=ticket_id)
+    ticket = Ticket.objects.get(id=ticket_id)
     form = TicketForm(instance=ticket)
-    # if request = POST
-    
+    if request.method == 'POST':
+        form = TicketForm(request.POST or None, request.FILES or None, instance=ticket)
+        if form.is_valid:
+            form.save(commit=False)
+            form.user = request.user
+            form.save()
+            return redirect('posts')
+        else:
+            form = TicketForm(instance=ticket)
+        
     return render(request, "edit-ticket.html", {'form':form})

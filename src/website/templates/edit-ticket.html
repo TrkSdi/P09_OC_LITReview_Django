@@ -6,9 +6,11 @@
 {% block content %}
 <section>
     <h2>Modifier votre ticket</h2>
-       <form method="POST">
+       <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+        <p>{{ form.title }}</p>
+        <p>{{ form.description }}</p>
+        <p>{{ form.image}}</p>
         <input type="submit" value="Envoyer">
 
        </form>
