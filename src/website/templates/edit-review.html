@@ -1,19 +1,21 @@
 {% extends 'base.html'%}
-
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/review-edit.css' %}">{% endblock %}
 {% block title %}<title>Modifier critique</title>{% endblock %}
 
 
 {% block content %}
 <section>
     <div>
-        <h1>Modifier votre critique</h1>
-        <form method="POST" action="" enctype="multipart/form-data">
-            <h2>Titre de la critique</h2>
+        <h2>Modifier votre critique</h2>
+        <form class="review" method="POST" action="" enctype="multipart/form-data">
+            <h3>Titre de la critique</h3>
             {{ form.headline }}
-            <h2>Note</h2>
+            <h3>Note</h3>
             {{ form.rating }}
-            <h2>Commentaire</h2>
+            <h3>Commentaire</h3>
             {{ form.body }}
+            <input type="button" value="Envoyer" class="review-btn-1">
 
         </form>
     </div>
