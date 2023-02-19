@@ -16,9 +16,7 @@ from django.db.models import CharField, Value, Q
 
 
 
-@login_required
-def edit_review(request):
-    return render(request, "edit-review.html")
+
 
 @login_required
 def ticket_review(request):
@@ -152,3 +150,15 @@ def edit_ticket(request, ticket_id):
             form = TicketForm(instance=ticket)
         
     return render(request, "edit-ticket.html", {'form':form})
+
+@login_required
+def delete_ticket(request, ticket_id):
+    ticket = Ticket.objects.get(id=ticket_id)
+    ticket.delete()
+        
+    return redirect('posts')
+
+
+@login_required
+def edit_review(request):
+    return render(request, "edit-review.html")

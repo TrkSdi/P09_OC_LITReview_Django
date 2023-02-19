@@ -34,6 +34,7 @@ urlpatterns = [
     path('follow-page/unfollow', unfollow, name="follow-page-unfollow"),
     path('ticket/', ticket, name='ticket'),
     path('ticket/edit/<int:ticket_id>/', edit_ticket, name='ticket-edit'),
+    path('ticket/delete/<int:ticket_id>', delete_ticket, name="ticket-delete"),
     path('review/', review, name="review"),
     path('posts/', posts, name='posts'),
 ]

@@ -1,4 +1,6 @@
 {% extends 'base.html'%}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/ticket-edit.css' %}">{% endblock %}
 
 {% block title %}<title>Modifier ticket</title>{% endblock %}
 
@@ -6,13 +8,17 @@
 {% block content %}
 <section>
     <h2>Modifier votre ticket</h2>
-       <form method="POST" enctype="multipart/form-data">
+       <form class="ticket-form" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
+        <h3>Titre</h3>
         <p>{{ form.title }}</p>
+        <h3>Description</h3>
         <p>{{ form.description }}</p>
-        <p>{{ form.image}}</p>
-        <input type="submit" value="Envoyer">
-
+        <h3>Image</h3>
+        <p>{{ form.ticket.image.url }}</p>
+        <p>{{ form.image }}</p>
+        <input class="input-btn" type="submit" value="Envoyer">
        </form>
+       
 </section>
 {% endblock %}

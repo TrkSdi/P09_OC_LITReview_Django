@@ -1,9 +1,17 @@
-{% load static %}
-    <div class="review">
-        <div class="head-review">
-        <p>{{ post.user }} a publié une critique</p>
-        <p class="time-created">{{ post.time_created }}</p>
-        </div>
-        <p>{{ post.headline }}</p>
-        <p>{{ post.star_rating }}</p>
-    </div>
+<div class="published-review">
+   <div class="user-review">
+      <p>{{ post.user }} a publié une critique</p>
+      <p class="time-created">{{ post.time_created }}</p>
+   </div>
+   <p>{{ post.headline }}</p>
+   <p>{{ post.rating }}</p>
+      <div class="responded-ticket">
+         <p>Ticket de {{ post.ticket.user }}</p>
+         <p>{{ post.ticket.title }}</p>
+         <img class="ticket-image" src="{{ post.ticket.image.url }}" alt="{{ post.title }}">
+      </div>
+   <div class="btn">
+      <button class="edit-btn"><a href="{% url 'ticket-edit' post.id %}"  name="review-ticket">Modifier</a></button>
+      <button class="remove-btn"><a href="{% url 'ticket-delete' post.id %}"  name="review-ticket">Supprimer</a></button>
+   </div>   
+ </div>
