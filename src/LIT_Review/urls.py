@@ -36,6 +36,7 @@ urlpatterns = [
     path('ticket/edit/<int:ticket_id>/', edit_ticket, name='ticket-edit'),
     path('ticket/delete/<int:ticket_id>', delete_ticket, name="ticket-delete"),
     path('review/', review, name="review"),
+    path('review/edit/<int:review_id>/', edit_review, name='review-edit'),
     path('posts/', posts, name='posts'),
 ]
 
