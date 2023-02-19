@@ -164,15 +164,20 @@ def edit_review(request, review_id):
     review = Review.objects.get(id=review_id)
     form = ReviewForm(instance=review)
     if request.method == 'POST':
-        form = Review(request.POST or None, request.FILES or None, instance=ticket)
+        form = Review(request.POST or None, request.FILES or None, instance=review)
         if form.is_valid:
             form.save(commit=False)
             form.user = request.user
             form.save()
             return redirect('posts')
         else:
-            form = Review(instance=ticket)
+            form = Review(instance=review)
         
     return render(request, "edit-review.html", {'form':form})
-    
-    return render(request, "edit-review.html")
+
+@login_required
+def delete_review(request, review_id):
+    review = Review.objects.get(id=review_id)
+    review.delete()
+        
+    return redirect('posts')

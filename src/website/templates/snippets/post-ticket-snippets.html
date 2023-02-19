@@ -8,7 +8,7 @@
         <img class="image-ticket" src="{{ post.image.url }}" alt="{{ post.title }}">
     {% endif %}
         <div class="btn">
-            <button class="edit-btn"><a href="{% url 'ticket-edit' post.id %}"  name="review-ticket">Modifier</a></button>
-            <button class="remove-btn"><a href="{% url 'ticket-delete' post.id %}"  name="review-ticket">Supprimer</a></button>
+            <button class="edit-btn"><a href="{% url 'ticket-edit' post.id %}"  name="edit-ticket">Modifier</a></button>
+            <button class="remove-btn"><a href="{% url 'ticket-delete' post.id %}"  name="delete-ticket">Supprimer</a></button>
         </div>
 </div>

@@ -37,6 +37,7 @@ urlpatterns = [
     path('ticket/delete/<int:ticket_id>', delete_ticket, name="ticket-delete"),
     path('review/', review, name="review"),
     path('review/edit/<int:review_id>/', edit_review, name='review-edit'),
+    path('review/delete/<int:review_id>', delete_review, name="review-delete"),
     path('posts/', posts, name='posts'),
 ]
 
