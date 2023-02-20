@@ -1,0 +1,13 @@
+<h3>Titre du ticket</h3>
+    <p>{{ ticket_form.title }}</p>
+<h3>Description</h3>
+    <p>{{ ticket_form.description }}</p>
+<h3>Image</h3>
+    <p>{{ ticket_form.image }}</p>
+    <img src="{{ ticket_form.image.url }}" alt="">
+<h3>Titre de la critique</h3>
+    <p>{{ review_form.headline }}</p>
+<h3>Note</h3>
+    <p>{{ review_form.rating }}</p>
+<h3>Commentaire</h3>
+    <p>{{ review_form.body }}</p>

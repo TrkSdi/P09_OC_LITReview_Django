@@ -9,13 +9,14 @@
     <div>
         <h2>Modifier votre critique</h2>
         <form class="review" method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
             <h3>Titre de la critique</h3>
             {{ form.headline }}
             <h3>Note</h3>
             {{ form.rating }}
             <h3>Commentaire</h3>
             {{ form.body }}
-            <input type="button" value="Envoyer" class="review-btn-1">
+            <input type="submit" value="Envoyer" class="review-btn-1">
 
         </form>
     </div>

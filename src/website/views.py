@@ -9,24 +9,6 @@ from .models import Review, Ticket
 from django.db.models import CharField, Value, Q
 
 
-    
-
-    
-    
-
-
-
-
-
-@login_required
-def ticket_review(request):
-    return render(request, "ticket-review.html")
-
-
-
-
-
-
 @login_required
 def follow(request):
     context = {}
@@ -164,14 +146,14 @@ def edit_review(request, review_id):
     review = Review.objects.get(id=review_id)
     form = ReviewForm(instance=review)
     if request.method == 'POST':
-        form = Review(request.POST or None, request.FILES or None, instance=review)
+        form = ReviewForm(request.POST or None, request.FILES or None, instance=review)
         if form.is_valid:
             form.save(commit=False)
             form.user = request.user
             form.save()
             return redirect('posts')
         else:
-            form = Review(instance=review)
+            form = ReviewForm(instance=ticket)
         
     return render(request, "edit-review.html", {'form':form})
 
@@ -181,3 +163,28 @@ def delete_review(request, review_id):
     review.delete()
         
     return redirect('posts')
+
+@login_required
+def ticket_review(request, ticket_id):
+    ticket = Ticket.objects.get(id=ticket_id)
+    review_form = ReviewForm()
+    ticket_form = TicketForm(instance=ticket)
+    if request.method == 'POST':
+        ticket_form = TicketForm(request.POST or None, request.FILES or None, instance=ticket)
+        review_form = ReviewForm(request.POST or None)
+        if any([review_form.is_valid(), ticket_form.is_valid()]):
+            ticket = ticket_form.save(commit=False)
+            ticket.user = request.user
+            ticket.save()
+            review = review_form.save(commit=False)
+            review.ticket = ticket
+            review.user = request.user
+            review.save()
+            return redirect('feed')
+    else:
+        review_form = ReviewForm()
+    
+    context = {"review_form": review_form, 
+               "ticket_form":ticket_form}
+    
+    return render(request, "ticket-review.html", context)

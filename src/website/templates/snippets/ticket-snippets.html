@@ -9,8 +9,8 @@
         {% if post.image %}
             <img class="ticket-image" src="{{ post.image.url }}" alt="{{ post.title }}">
         {% endif %}
-        {% if post.is_reviewed == False %}
-            <button class="ticket-btn-1" type="submit" name="review-ticket">Créer une critique</button>
-        {% endif %}
+    {% if post.is_reviewed == False %}
+            <button class="ticket-btn-1" type="submit" name="ticket-review"><a href="{% url 'ticket-review' post.id %}">Créer une critique</a></button>
+    {% endif %}
     </div>      
 </div>

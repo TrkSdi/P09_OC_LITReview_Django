@@ -2,12 +2,12 @@
 
 {% load static %}
 
-{% block css %}{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/post.css' %}">{% endblock %}
 {% block title %}<title>Posts</title>{% endblock %}
 
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/post.css' %}">
+
 <section>
     <h2 class="title">Vos posts</h2>
     {% for post in reviews_and_tickets %}

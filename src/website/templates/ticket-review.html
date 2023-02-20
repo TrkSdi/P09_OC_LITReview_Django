@@ -12,11 +12,9 @@
         <div>
             <!-- Critique du ticket -->
             <h2>Critique</h2>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                <table>
-                    {{ review_form.as_table }}
-                </table>
+                    {% include 'snippets/ticket-review-snippet.html' %}
                 <input type="submit" value="Envoyer">
 
             </form>

@@ -31,14 +31,15 @@ urlpatterns = [
     path('signup/', signup, name='signup'),
     path('feed/', feed, name='feed'),
     path('follow-page/', follow, name="follow-page"),
-    path('follow-page/unfollow', unfollow, name="follow-page-unfollow"),
+    path('follow-page/unfollow/', unfollow, name="follow-page-unfollow"),
     path('ticket/', ticket, name='ticket'),
     path('ticket/edit/<int:ticket_id>/', edit_ticket, name='ticket-edit'),
-    path('ticket/delete/<int:ticket_id>', delete_ticket, name="ticket-delete"),
+    path('ticket/delete/<int:ticket_id>/', delete_ticket, name="ticket-delete"),
     path('review/', review, name="review"),
     path('review/edit/<int:review_id>/', edit_review, name='review-edit'),
-    path('review/delete/<int:review_id>', delete_review, name="review-delete"),
+    path('review/delete/<int:review_id>/', delete_review, name="review-delete"),
     path('posts/', posts, name='posts'),
+    path('feed/ticket/<int:ticket_id>/', ticket_review, name="ticket-review"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
