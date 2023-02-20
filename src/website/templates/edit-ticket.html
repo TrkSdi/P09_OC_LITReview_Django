@@ -15,7 +15,7 @@
         <h3>Description</h3>
         <p>{{ form.description }}</p>
         <h3>Image</h3>
-        <p>{{ form.ticket.image.url }}</p>
+        <img src="/{{ form.image }}" alt="{{ form.image.url }}">
         <p>{{ form.image }}</p>
         <input class="input-btn" type="submit" value="Envoyer">
        </form>

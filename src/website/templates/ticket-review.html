@@ -13,6 +13,7 @@
         <div>
             <!-- Critique du ticket -->
             <h2>Critique</h2>
+            <!-- vue ticket -->
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                     {% include 'snippets/ticket-review-snippet.html' %}
