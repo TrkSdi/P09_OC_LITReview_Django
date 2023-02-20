@@ -1,5 +1,6 @@
 {% extends 'base.html'%}
-
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/ticket-review.css' %}">{% endblock %}
 {% block title %}<title>Critique ticket</title>{% endblock %}
 
 
@@ -15,8 +16,6 @@
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                     {% include 'snippets/ticket-review-snippet.html' %}
-                <input type="submit" value="Envoyer">
-
             </form>
         </div>
     </div>

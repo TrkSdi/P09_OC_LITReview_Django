@@ -1,0 +1,46 @@
+h3 {
+    font-size: 12px;
+    margin-bottom: -10px;
+}
+
+h2 {
+    font-weight: 500;
+    font-size: 15px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.ticket, .review {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(224, 226, 225);
+    margin-left: 40px;
+    margin-right: 40px;
+    padding-left: 20px;
+    padding-right: auto;
+    border: 0.5px solid black;
+    border-radius: 4px;
+}
+
+#id_rating {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.ticket-btn-1 {
+    display: flex;
+    font-size: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    margin-left: auto;
+}
+
+#id_image {
+    font-size: 10px;
+}
+
+#id_title, #id_description, #id_headline, #id_body  {
+    width: 400px ;
+}
