@@ -5,6 +5,8 @@
    </div>
    <p>{{ post.headline }}</p>
    <p>{{ post.rating }}</p>
+   <p>{{ post.star_display }}</p>
+   <img src="{{ post.star_display }}" alt="star-rating">
       <div class="responded-ticket">
          <p>Ticket de {{ post.ticket.user }}</p>
          <p>{{ post.ticket.title }}</p>

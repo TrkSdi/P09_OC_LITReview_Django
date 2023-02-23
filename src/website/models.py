@@ -1,3 +1,4 @@
+from pathlib import Path
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
@@ -44,25 +45,24 @@ class Review(models.Model):
     def __str__(self):
         return f"{self.headline}"
     
-
-    
-""""    
-class BookToReview(models.Model):
-    book_title = models.CharField(max_length=100)
-    description = models.CharField(max_length=500)
-    image = models.ImageField(upload_to="images/", blank=True, null=True)
-    review_title = models.CharField(max_length=100)
-    note = models.CharField(max_length=5, choices=NOTE, blank=False, default=None)
-    comment = models.CharField(max_length=500)
-
-class TicketToReview(models.Model):
-    title = models.CharField(max_length=100)
-    note = models.CharField(max_length=5, choices=NOTE, blank=False, default=None)
-    comment = models.CharField(max_length=500)
-    
-class TicketCreation(models.Model):
-    title = models.CharField(max_length=100)
-    description = models.CharField(max_length=500)
-    image = models.ImageField(upload_to="images/", blank=True, null=True)
-"""   
+    @property
+    def star_display(self):
+        if self.rating == "5":
+            url =  Path("/src/media/star-rating/5star.png")
+            return url
+        elif self.rating == "4":
+            url =  Path("/src/media/star-rating/4star.png")
+            return url
+        elif self.rating == "3":
+            url =  Path("/src/media/star-rating/3star.png")
+            return url
+        elif self.rating == "2":
+            url =  Path("/src/media/star-rating/2star.png")
+            return url
+        elif self.rating == "1":
+            url =  Path("/src/media/star-rating/1star.png")
+            return url
+        else:
+            url =  Path("/src/media/star-rating/0star.png")
+            return url
 

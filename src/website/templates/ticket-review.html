@@ -8,12 +8,15 @@
 <section>
     <div>
         <div>
-            <!-- Récupérer le ticket -->
-        </div>
-        <div>
-            <!-- Critique du ticket -->
             <h2>Critique</h2>
-            <!-- vue ticket -->
+            <div class="ticket">
+                <h3>Titre du ticket</h3>
+                    <p>{{ ticket.title }}</p>
+                <h3>Description</h3>
+                    <p>{{ ticket.description }}</p>
+                <h3>Image</h3>
+                    <img src="{{ ticket.image.url }}" alt="" width=100px>
+            </div>
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                     {% include 'snippets/ticket-review-snippet.html' %}

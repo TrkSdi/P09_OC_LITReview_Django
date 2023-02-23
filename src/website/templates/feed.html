@@ -11,7 +11,7 @@
         <button class="ticket-btn"><a href="{% url 'ticket' %}">Demander une critique</a></button>
         <button class="review-btn"><a href="{% url 'review' %}">Créer une critique</a></button>
     </div>
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {% for post in reviews_and_tickets %}
             {% if post.content_type == 'TICKET' %}

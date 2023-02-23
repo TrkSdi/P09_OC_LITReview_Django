@@ -24,7 +24,7 @@ body {
 .nav-menu {
     display: flex;
     flex-direction: row;
-    margin-left: 60px;
+    margin-left: auto;
     justify-content: space-between;
 }
 
@@ -38,7 +38,8 @@ body {
     border-radius: 3px;
     background-color: rgb(46, 44, 44);
     display: flex;
-    justify-content: flex-end;
-    align-items: center; 
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 370px;
 }
-    

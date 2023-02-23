@@ -54,7 +54,7 @@ def ticket(request):
             instance = ticket_form.save(commit=False)
             instance.user = request.user
             ticket_form.save()
-            ticket_form = TicketForm()
+            return redirect('feed')
         else:
             messages.error(request, "Erreur de POST")
     else:
@@ -72,7 +72,6 @@ def review(request):
         if any([review_form.is_valid(), ticket_form.is_valid()]):
             ticket = ticket_form.save(commit=False)
             ticket.user = request.user
-            ticket.save()
             review = review_form.save(commit=False)
             review.ticket = ticket
             review.user = request.user
@@ -107,7 +106,9 @@ def feed(request):
 
 @login_required
 def posts(request):
-    reviews = Review.objects.filter(user=request.user)
+    reviews = Review.objects.filter(
+        Q(user=request.user) |
+        Q(ticket__user=request.user))
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     tickets = Ticket.objects.filter(user=request.user)
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
@@ -170,14 +171,9 @@ def delete_review(request, review_id):
 def ticket_review(request, ticket_id):
     ticket = Ticket.objects.get(id=ticket_id)
     review_form = ReviewForm()
-    ticket_form = TicketForm(instance=ticket)
     if request.method == 'POST':
-        ticket_form = TicketForm(request.POST or None, request.FILES or None, instance=ticket)
         review_form = ReviewForm(request.POST or None)
-        if any([review_form.is_valid(), ticket_form.is_valid()]):
-            ticket = ticket_form.save(commit=False)
-            ticket.user = request.user
-            ticket.save()
+        if review_form.is_valid:
             review = review_form.save(commit=False)
             review.ticket = ticket
             review.user = request.user
@@ -187,6 +183,7 @@ def ticket_review(request, ticket_id):
         review_form = ReviewForm()
     
     context = {"review_form": review_form, 
-               "ticket_form":ticket_form}
+               "ticket": ticket}
     
     return render(request, "ticket-review.html", context)
+
