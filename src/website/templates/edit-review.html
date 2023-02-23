@@ -8,6 +8,14 @@
 <section>
     <div>
         <h2>Modifier votre critique</h2>
+        <div class="ticket-block">
+            <h3 class = "h3-ticket">Titre</h3>
+                <p class="ticket-title">{{ ticket.title }}</p>
+            <h3 class = "h3-ticket">Description</h3>
+                <p class="ticket-description">{{ ticket.description }}</p>
+            <h3 class = "h3-ticket">Image</h3>
+                <img id="id_image" src="{{ ticket.image.url }}" alt="{{ ticket.title }}">
+        </div>
         <form class="review" method="POST" action="" enctype="multipart/form-data">
             {% csrf_token %}
             <h3>Titre de la critique</h3>

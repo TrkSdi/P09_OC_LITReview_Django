@@ -140,10 +140,10 @@ def delete_ticket(request, ticket_id):
         
     return redirect('posts')
 
-
 @login_required
 def edit_review(request, review_id):
     review = Review.objects.get(id=review_id)
+    ticket = Ticket.objects.get(id=review.ticket.id)
     form = ReviewForm(instance=review)
     if request.method == 'POST':
         form = ReviewForm(request.POST or None, request.FILES or None, instance=review)
@@ -154,8 +154,10 @@ def edit_review(request, review_id):
             return redirect('posts')
         else:
             form = ReviewForm(instance=ticket)
+    
+    context = {'form':form, 'ticket':ticket}
         
-    return render(request, "edit-review.html", {'form':form})
+    return render(request, "edit-review.html", context)
 
 @login_required
 def delete_review(request, review_id):

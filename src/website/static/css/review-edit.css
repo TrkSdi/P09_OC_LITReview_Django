@@ -14,7 +14,7 @@ h2 {
     margin-bottom: 20px;
 }
 
-.ticket, .review {
+.review, .ticket-block {
     display: flex;
     flex-direction: column;
     background-color: rgb(224, 226, 225);
@@ -29,8 +29,17 @@ h2 {
 #id_rating {
     display: flex;
     flex-direction: row;
+    font-size: 12px;
+    
 }
 
+#id_rating_5, #id_rating_4, 
+#id_rating_3, #id_rating_2, 
+#id_rating_1, #id_rating_0 {
+    width: 10px;
+    height: 10px;
+    
+}
 .review-btn-1 {
     display: flex;
     font-size: 10px;
@@ -41,9 +50,31 @@ h2 {
 }
 
 #id_image {
-    font-size: 10px;
+    width: 100px;
+    margin-bottom: 20px;
+    margin-top: 10px;
 }
+
+
 
 #id_title, #id_description, #id_headline, #id_body  {
     width: 400px ;
 }
+
+.ticket-title, .ticket-description {
+    font-size: 10px;
+    background-color: white;
+    padding-right: 10px;
+    padding-left: 3px;
+    padding-top: 3px;
+    width : fit-content;
+    height: 15px;
+    border: 0.5px solid black;
+    border-radius: 4px;
+    
+}
+
+.h3-ticket {
+    margin-bottom: -3px;
+}
+
