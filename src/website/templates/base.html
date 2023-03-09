@@ -16,17 +16,20 @@
 <body>
     
     <header class="container">
+        <div class="hidden"></div>
         <div class="main-title">
             <h1>LITReview</h1>
         </div>
-        <nav >
-            <ul class="nav-menu">
-                <li><a href="{% url 'feed' %}">Flux</a></li>
-                <li><a href="{% url 'posts' %}">Posts</a></li>
-                <li><a href="{% url 'follow-page' %}">Abonnements</a></li>
-                <li><a href="{% url 'logout' %}">({{ user.username }}) Se déconnecter</a></li>
-            </ul>
-        </nav>
+        <div class="menu">
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="{% url 'feed' %}">Flux</a></li>
+                    <li><a href="{% url 'posts' %}">Posts</a></li>
+                    <li><a href="{% url 'follow-page' %}">Abonnements</a></li>
+                    <li><a href="{% url 'logout' %}">({{ user.username }}) Se déconnecter</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
     
     {% block content %}

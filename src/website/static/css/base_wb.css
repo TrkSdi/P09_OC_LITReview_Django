@@ -24,8 +24,10 @@ body {
 .nav-menu {
     display: flex;
     flex-direction: row;
-    margin-left: auto;
     justify-content: space-between;
+    text-align: center;
+    padding: 0;
+    
 }
 
 .nav-menu li { 
@@ -37,9 +39,26 @@ body {
     color : whitesmoke;
     border-radius: 3px;
     background-color: rgb(46, 44, 44);
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-left: 370px;
+    
+}
+
+.hidden {
+    width: 181.964px;
+    text-align: center;
+}
+
+.main-title {
+    width: 181.964px;
+    text-align: center;
+}
+
+.menu {
+    width: 181.964px;
+    text-align: center;
 }
