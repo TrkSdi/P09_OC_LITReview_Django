@@ -48,21 +48,21 @@ class Review(models.Model):
     @property
     def star_display(self):
         if self.rating == "5":
-            url =  Path("/src/media/star-rating/5star.png")
+            url =  "/media/star-rating/5star.png"
             return url
         elif self.rating == "4":
-            url =  Path("/src/media/star-rating/4star.png")
+            url =  "/media/star-rating/4star.png"
             return url
         elif self.rating == "3":
-            url =  Path("/src/media/star-rating/3star.png")
+            url =  "/media/star-rating/3star.png"
             return url
         elif self.rating == "2":
-            url =  Path("/src/media/star-rating/2star.png")
+            url =  "/media/star-rating/2star.png"
             return url
         elif self.rating == "1":
-            url =  Path("/src/media/star-rating/1star.png")
+            url =  "/media/star-rating/1star.png"
             return url
         else:
-            url =  Path("/src/media/star-rating/0star.png")
+            url =  "/media/star-rating/0star.png"
             return url
 

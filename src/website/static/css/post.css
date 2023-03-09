@@ -55,23 +55,6 @@ h2 {
     padding-top: 50px;
 }
 
-
-/* */
-
-.ticket-btn a:visited, .review-btn a:visited {
-    color: black;
-}
-
-.ticket-btn a:link, .review-btn a:link {
-    text-decoration: none;
-}
-
-
-.ticket-btn, .review-btn {
-    font-size: 10px;
-}
-
-
 .published-review {
     font-size: 10px;
     background-color: rgb(223, 219, 219);
@@ -81,6 +64,7 @@ h2 {
     padding-right: 10px;
     margin-left: 70px;
     margin-right: 70px;
+    margin-top: 10px;
 }
 
 .responded-ticket {
@@ -93,7 +77,6 @@ h2 {
     margin-bottom: 10px;
     padding-left: 10px;
 }
-
 
 
 .time-created {
@@ -112,3 +95,15 @@ h2 {
     margin-top: 10px;
 }
 
+.edit-btn a:visited, .remove-btn a:visited {
+    color: black;
+}
+
+.edit-btn a:link, .remove-btn a:link {
+    text-decoration: none;
+    color: black;
+}
+
+.edit-btn, .remove-btn {
+    color: black;
+}

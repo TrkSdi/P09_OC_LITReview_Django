@@ -7,7 +7,5 @@ class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ("username", )
-        widgets = {'username': forms.fields.TextInput(attrs={'placeholder': "Nom d'utilisateur"}),
-                   'Password': forms.fields.TextInput(attrs={'placeholder': "Mot de passe"}),
-                   'Password confirmation': forms.fields.TextInput(attrs={'placeholder': "Confirmez mot de passe"})}
+        
 

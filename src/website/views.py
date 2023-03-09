@@ -13,11 +13,12 @@ from django.db.models import CharField, Value, Q
 def follow(request):
     context = {}
     user = CustomUser.objects.get(pk=request.user.id)
+    
     if request.method == "POST":
         search = request.POST["search"]
         try:
-            followed = CustomUser.objects.get(username=search)
-            if followed is not None:  
+            followed = CustomUser.objects.get(username__iexact=search)
+            if followed is not None and followed != request.user:  
                 user.follows.add(followed)
                 user.save()
         except:
@@ -132,7 +133,7 @@ def edit_ticket(request, ticket_id):
         else:
             form = TicketForm(instance=ticket)
         
-    return render(request, "edit-ticket.html", {'form':form})
+    return render(request, "edit-ticket.html", {'form':form, 'ticket':ticket})
 
 @login_required
 def delete_ticket(request, ticket_id):
@@ -156,7 +157,7 @@ def edit_review(request, review_id):
         else:
             form = ReviewForm(instance=ticket)
     
-    context = {'form':form, 'ticket':ticket}
+    context = {'form':form, 'ticket':ticket, 'image':ticket.image_url}
         
     return render(request, "edit-review.html", context)
 

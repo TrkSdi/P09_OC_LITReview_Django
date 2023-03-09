@@ -4,9 +4,10 @@
       <p class="time-created">{{ post.time_created }}</p>
    </div>
    <p>{{ post.headline }}</p>
-   <p>{{ post.rating }}</p>
-   <p>{{ post.star_display }}</p>
-   <img src="{{ post.star_display }}" alt="star-rating">
+   <div class="rating">
+      <p>{{ post.rating }}</p>
+      <img class="rating-star" src="{{ post.star_display }}" alt="star-rating">
+   </div>
       <div class="responded-ticket">
          <p>Ticket de {{ post.ticket.user }}</p>
          <p>{{ post.ticket.title }}</p>

@@ -44,3 +44,14 @@ h2 {
 #id_title, #id_description, #id_headline, #id_body  {
     width: 400px ;
 }
+
+.image-ticket {
+    width: 150px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+p {
+    font-size: 11px;
+    margin-top: 15px;
+}
