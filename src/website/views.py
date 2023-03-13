@@ -73,6 +73,7 @@ def review(request):
         if any([review_form.is_valid(), ticket_form.is_valid()]):
             ticket = ticket_form.save(commit=False)
             ticket.user = request.user
+            ticket.save()
             review = review_form.save(commit=False)
             review.ticket = ticket
             review.user = request.user
