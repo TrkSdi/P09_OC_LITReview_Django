@@ -29,7 +29,13 @@ h2 {
 #id_rating {
     display: flex;
     flex-direction: row;
+    padding-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
 
+ul {
+    list-style-type: none;
 }
 
 .ticket-btn-1 {
